@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             Stack(
               alignment: Alignment.center,
               children: [
-                Container(
+                SizedBox(
                   height: 150,
                   width: 150,
                   child: CircularProgressIndicator(
