@@ -61,9 +61,11 @@ class _HomePageState extends State<HomePage> {
                 Text("70%",style: TextStyle(color: Colors.black,fontSize: 4.h),),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 40,),
             Wrap(children: [
-              Addwaterbtn(),
+              Addwaterbtn(name: "add 1000+"),
+              Addwaterbtn(name: "add 200+"),
+              Addwaterbtn(name: "add 300+"),
             ],),
           ],
         ),
