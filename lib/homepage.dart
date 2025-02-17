@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:water_tracker/addwaterbtn.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -60,6 +61,10 @@ class _HomePageState extends State<HomePage> {
                 Text("70%",style: TextStyle(color: Colors.black,fontSize: 4.h),),
               ],
             ),
+            SizedBox(height: 10,),
+            Wrap(children: [
+              Addwaterbtn(),
+            ],),
           ],
         ),
       ),
