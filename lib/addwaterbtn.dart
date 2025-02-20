@@ -15,10 +15,10 @@ class Addwaterbtn extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(5),
         child: ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blueGrey, foregroundColor: Colors.white),
-          label: Text("+${amount}"),
+          label: Text("+$amount"),
           icon: Icon(
             icon ?? Icons.water_drop,
             color: Colors.white,

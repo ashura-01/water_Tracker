@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   void addWater(int ammount) {
     setState(() {
       if (_currentIntake < goal) {
-        _currentIntake = _currentIntake += ammount;
+        _currentIntake = (_currentIntake +ammount).clamp(0, goal);
       }
     });
   }
@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double progress = (_currentIntake/goal).clamp(0.0, 1.0);
     return Scaffold(
       appBar: AppBar(
         title: Text("Water tracker"),
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     height: 10,
                   ),
                   Text(
-                    "1000",
+                    "${_currentIntake}",
                     style: TextStyle(
                         fontWeight: FontWeight.w800,
                         fontSize: 28,
@@ -83,14 +84,14 @@ class _HomePageState extends State<HomePage> {
                   height: 150,
                   width: 150,
                   child: CircularProgressIndicator(
-                    value: 0.8,
+                    value: progress,
                     color: Colors.blue,
                     backgroundColor: Colors.grey.shade300,
                     strokeWidth: 10,
                   ),
                 ),
                 Text(
-                  "70%",
+                  "${progress*100}%",
                   style: TextStyle(color: Colors.black, fontSize: 4.h),
                 ),
               ],
@@ -100,15 +101,33 @@ class _HomePageState extends State<HomePage> {
             ),
             Wrap(
               children: [
-                Addwaterbtn(amount: 1000, icon: Icons.water_drop,onPressed:()=>addWater(1000),),
-                Addwaterbtn(amount: 200,icon: Icons.water_drop,onPressed: ()=>addWater(200),),
-                Addwaterbtn(amount: 100,icon: Icons.water_drop,onPressed: ()=>addWater(100),),
+                Addwaterbtn(
+                  amount: 1000,
+                  icon: Icons.water_drop,
+                  onPressed: () => addWater(1000),
+                ),
+                Addwaterbtn(
+                  amount: 500,
+                  icon: Icons.water_drop,
+                  onPressed: () => addWater(500),
+                ),
+                Addwaterbtn(
+                  amount: 100,
+                  icon: Icons.water_drop,
+                  onPressed: () => addWater(100),
+                ),
               ],
             ),
             SizedBox(
               height: 50,
             ),
-          ElevatedButton(onPressed: (){}, child: Text("reset"),style:ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey,foregroundColor: Colors.white),),
+            ElevatedButton(
+              onPressed: ()=>resetWater(),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent,
+                  foregroundColor: Colors.white),
+              child: Text("reset"),
+            ),
           ],
         ),
       ),
