@@ -10,6 +10,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIntake = 0;
+  final int goal = 2000;
+
+  void addWater(int ammount) {
+    setState(() {
+      if (_currentIntake < goal) {
+        _currentIntake = _currentIntake += ammount;
+      }
+    });
+  }
+
+  void resetWater() {
+    setState(() {
+      _currentIntake = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,28 +39,43 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.yellow.shade50,
-                boxShadow: [BoxShadow(
-                  color: Colors.blue.shade100,
-                  blurRadius: 10,
-                  spreadRadius: 2
-                )],
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.blue.shade100,
+                      blurRadius: 10,
+                      spreadRadius: 2)
+                ],
               ),
               child: Column(
                 children: [
-                  Text("Today's in take",style: TextStyle(fontWeight: FontWeight.w800,fontSize: 18),),
-                  SizedBox(height: 10,),
-                  Text("1000",style: TextStyle(fontWeight: FontWeight.w800,fontSize: 28,color: Colors.blue),)
-        
+                  Text(
+                    "Today's in take",
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "1000",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 28,
+                        color: Colors.blue),
+                  )
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Stack(
               alignment: Alignment.center,
               children: [
@@ -55,18 +87,28 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.blue,
                     backgroundColor: Colors.grey.shade300,
                     strokeWidth: 10,
-
                   ),
                 ),
-                Text("70%",style: TextStyle(color: Colors.black,fontSize: 4.h),),
+                Text(
+                  "70%",
+                  style: TextStyle(color: Colors.black, fontSize: 4.h),
+                ),
               ],
             ),
-            SizedBox(height: 40,),
-            Wrap(children: [
-              Addwaterbtn(name: "add 1000+"),
-              Addwaterbtn(name: "add 200+"),
-              Addwaterbtn(name: "add 300+"),
-            ],),
+            SizedBox(
+              height: 40,
+            ),
+            Wrap(
+              children: [
+                Addwaterbtn(amount: 1000, icon: Icons.water_drop,onPressed:()=>addWater(1000),),
+                Addwaterbtn(amount: 200,icon: Icons.water_drop,onPressed: ()=>addWater(200),),
+                Addwaterbtn(amount: 100,icon: Icons.water_drop,onPressed: ()=>addWater(100),),
+              ],
+            ),
+            SizedBox(
+              height: 50,
+            ),
+          ElevatedButton(onPressed: (){}, child: Text("reset"),style:ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey,foregroundColor: Colors.white),),
           ],
         ),
       ),

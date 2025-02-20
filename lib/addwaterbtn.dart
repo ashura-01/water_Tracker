@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Addwaterbtn extends StatelessWidget {
-  final String name;
-  const Addwaterbtn({super.key, required this.name});
+  int amount;
+  IconData? icon;
+  VoidCallback onPressed;
+
+  Addwaterbtn(
+      {super.key, required this.amount, this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +14,16 @@ class Addwaterbtn extends StatelessWidget {
       width: double.infinity,
       child: Padding(
         padding: EdgeInsets.all(5),
-        child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey,foregroundColor: Colors.white),
-            child: Text(name)),
+        child: ElevatedButton.icon(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blueGrey, foregroundColor: Colors.white),
+          label: Text("+${amount}"),
+          icon: Icon(
+            icon ?? Icons.water_drop,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
